@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 //Routing
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';

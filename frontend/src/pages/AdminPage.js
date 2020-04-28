@@ -1,11 +1,16 @@
 import React from 'react';
-import ProductList from '../components/AdminContent';
+import ProductList from '../components/ProductCards';
+import AdminMenu from '../components/AdminMenu';
+import {Container} from '@material-ui/core';
+
 
 const AdminPage = () => {
     return(
         <div>
-            <h3>Admin Page</h3>
-            <ProductList></ProductList>
+            <AdminMenu />
+            <Container>
+                <ProductList />
+            </Container>
         </div>
     );
 }
