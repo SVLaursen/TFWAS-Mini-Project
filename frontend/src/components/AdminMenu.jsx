@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, NavLink, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, withRouter, Redirect, useLocation} from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Typography, makeStyles, Drawer, useTheme, ListItem, ListItemIcon, Divider, ListItemText, List, Container } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AppsIcon from '@material-ui/icons/Apps';
@@ -11,6 +11,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import clsx from 'clsx';
 import ProductList from '../components/ProductCards';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import styled from 'styled-components';
 
 const drawerWidth = 240;
 
@@ -171,23 +173,68 @@ export default function AdminMenu() {
               {/* This is a redirect upon entering the admin page */}
               <Redirect to='/admin/preview' />
             </Route>
-            <Route path='/admin/preview'>
-              {/* This is the preview page */}
-              <Container maxWidth='auto' style={{paddingTop:'4rem'}}>
-                <ProductList />
-              </Container>
+            <Route path='/admin/*'>
+              <AnimatedTransition />
             </Route>
-            <Route path='/admin/add'>
-              {/* This is the add product page */}
-            </Route>
-            <Route path='/admin/update'>
-              {/* This is the update product page */}
-            </Route>
-            <Route path='/admin/delete'>
-              {/* This is the delete product page */}
-            </Route>
-          </Switch>
+        </Switch>
       </main>
     </div>
     );
 }
+
+const AnimatedTransition = withRouter(({location}) =>(
+  <Wrapper>
+  <TransitionGroup className="transition-group">
+    <CSSTransition key={location.key} classNames='fade' timeout={{enter:200, exit: 200}}>
+    <section className="route-section">
+      <Switch>
+        <Route path='/admin/preview'>
+          {/* This is the preview page */}
+          <Container maxWidth='auto' style={{paddingTop:'4rem'}}>
+            <ProductList />
+          </Container>
+        </Route>
+        <Route path='/admin/add'>
+          {/* This is the add product page */}
+        </Route>
+        <Route path='/admin/update'>
+          {/* This is the update product page */}
+        </Route>
+        <Route path='/admin/delete'>
+          {/* This is the delete product page */}
+        </Route>
+      </Switch>
+      </section>
+    </CSSTransition>
+  </TransitionGroup>
+  </Wrapper>
+));
+
+const Wrapper = styled.div`
+.fade-enter {
+    opacity: 0.01;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+.fade-exit {
+    opacity: 1;
+}
+  
+.fade-exit.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+div.transition-group{
+  position: relative;
+}
+
+section.route-section{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+`;

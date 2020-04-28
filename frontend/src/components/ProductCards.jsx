@@ -30,7 +30,7 @@ export default class ProductList extends React.Component{
                     <Grid container justify='center' spacing='3'>
                     {this.state.products.map(function (object, index){
                         return(
-                            <Grid item key={index} xs={3}>
+                            <Grid item key={index} xs={12} sm={3}>
                                 <Card maxWidth='150vh'>
                                     <CardMedia src={object.image} component='img' title={object.name} height='230vh' /> 
                                     <CardHeader title={object.name} subheader={object.category} />
