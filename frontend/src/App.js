@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Routing
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Pages
 import FrontPage from './pages/FrontPage';

@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import {Card, CardHeader, CardMedia, CardContent, Grid, Typography} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 
 const classes = makeStyles((theme) =>({
     root:{
-        maxWidth: 345
+        maxWidth: 200
     }
 }));
 
@@ -29,12 +30,14 @@ export default class ProductList extends React.Component{
                     <Grid container justify='center' spacing='3'>
                     {this.state.products.map(function (object, index){
                         return(
-                            <Grid item key={index}>
-                                <Card className={classes.root}>
-                                    <CardMedia src={object.image} component='img' title={object.name} height={240} />
+                            <Grid item key={index} xs={3}>
+                                <Card maxWidth='150vh'>
+                                    <CardMedia src={object.image} component='img' title={object.name} height='230vh' /> 
                                     <CardHeader title={object.name} subheader={object.category} />
                                     <CardContent>
-
+                                        <Typography variant='h6' noWrap >
+                                            {object.price}
+                                        </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
