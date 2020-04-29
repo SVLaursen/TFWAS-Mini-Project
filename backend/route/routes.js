@@ -20,7 +20,8 @@ router.post('/product', (req, res, next) => {
     let newProduct = new Product({
         name: req.body.name,
         price: req.body.price,
-        category: req.body.category
+        category: req.body.category,
+        image: req.body.image
     });
     newProduct.save((err, product) => {
         if(err){
@@ -34,25 +35,31 @@ router.post('/product', (req, res, next) => {
 
 //PUT - UPDATE
 router.put('/product/:id', (req, res, next) => {
-    Product.findOneAndUpdate({_id: req.params._id},{
+    Product.findOneAndUpdate({_id: req.params.id},{
         $set:{
             name: req.body.name,
             price: req.body.price,
-            category: req.body.category
+            category: req.body.category,
+            image: req.body.image
         }
     }, function(err, result){
         if(err){
             res.json(err);
         }
         else{
-            res.json(result);
+            if(result){
+                res.json(result);
+            }
+            else{
+                res.json('no object with the id entered exists')
+            }
         }
     });
 });
 
 //DELETE - DELETE
-router.delete('/product/:id', (req, res, next) => {
-    Product.remove({_id: req.params._id}, function(err, result){
+router.delete('/products/:id', (req, res, next) => {
+    Product.remove({_id: req.params.id}, function(err, result){
         if(err){
             res.json(err);
         }

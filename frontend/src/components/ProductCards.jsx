@@ -1,14 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Card, CardHeader, CardMedia, CardContent, Grid, Typography} from '@material-ui/core'
-import { makeStyles } from '@material-ui/core';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-
-const classes = makeStyles((theme) =>({
-    root:{
-        maxWidth: 200
-    }
-}));
+import {Card, CardHeader, CardMedia, CardContent, Grid, Typography} from '@material-ui/core';
 
 export default class ProductList extends React.Component{
     state = {
@@ -27,11 +19,11 @@ export default class ProductList extends React.Component{
         return(
             <Grid container flexGrow='1' spacing='3'>
                 <Grid item xs='12'>
-                    <Grid container justify='center' spacing='3'>
+                    <Grid container justify='center' spacing='3' justify="flex-start" alignItems="flex-start">
                     {this.state.products.map(function (object, index){
                         return(
-                            <Grid item key={index} xs={12} sm={3}>
-                                <Card maxWidth='150vh'>
+                            <Grid item key={index} xs={11} sm={3}>
+                                <Card >
                                     <CardMedia src={object.image} component='img' title={object.name} height='230vh' /> 
                                     <CardHeader title={object.name} subheader={object.category} />
                                     <CardContent>

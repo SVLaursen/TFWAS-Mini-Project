@@ -11,7 +11,7 @@ import AdminPage from './pages/AdminPage';
 const App = () => {
   return (
     <Router>
-      <div classname='App'>
+      <div className='App'>
         <Switch>
           <Route path='/' exact component={FrontPage} />
           <Route path='/about' component={AboutPage} />

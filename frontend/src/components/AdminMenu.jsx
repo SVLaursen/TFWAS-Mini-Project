@@ -13,6 +13,8 @@ import clsx from 'clsx';
 import ProductList from '../components/ProductCards';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from 'styled-components';
+import AdminAddForm from '../components/AdminAddForm';
+import AdminDeleteCards from '../components/AdminDeleteCards';
 
 const drawerWidth = 240;
 
@@ -196,12 +198,18 @@ const AnimatedTransition = withRouter(({location}) =>(
         </Route>
         <Route path='/admin/add'>
           {/* This is the add product page */}
+          <Container style={{paddingTop:'4rem'}}>
+            <AdminAddForm />
+          </Container>
         </Route>
         <Route path='/admin/update'>
           {/* This is the update product page */}
         </Route>
         <Route path='/admin/delete'>
           {/* This is the delete product page */}
+          <Container style={{paddingTop: '4rem'}}>
+            <AdminDeleteCards />
+          </Container>
         </Route>
       </Switch>
       </section>
