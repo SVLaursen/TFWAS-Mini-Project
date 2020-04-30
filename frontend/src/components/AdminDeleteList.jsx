@@ -1,19 +1,29 @@
 import React from 'react';
 import axios from 'axios';
-import {Card, CardHeader, CardMedia, CardContent, Grid, Typography, CardActionArea, makeStyles, Button} from '@material-ui/core';
-import {Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import {Grid, makeStyles, Button} from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, IconButton, ListItemSecondaryAction, ListItemText, Avatar } from '@material-ui/core';
+import {Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Divider } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 
 const useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
     },
+    root: {
+        flexGrow: 1,
+        maxWidth: 752,
+      },
+      demo: {
+        backgroundColor: theme.palette.background.paper,
+      },
+      title: {
+        margin: theme.spacing(4, 0, 2),
+      },
   }));
 
-//const [open, setOpen] = React.useState(false);
-
-export default class AdminDeleteCards extends React.Component{
+export default class AdminDeleteList extends React.Component{
     state = {
         products: [],
         id: '',
@@ -95,7 +105,7 @@ export default class AdminDeleteCards extends React.Component{
                 </Dialog>
                 <Grid container flexGrow='1' spacing='3'>
                     <Grid item xs='12'>
-                        <Grid container justify='center' spacing='3' justify="flex-start" alignItems="flex-start">
+                        {/*<Grid container justify='center' spacing='3' justify="flex-start" alignItems="flex-start">
                         {this.state.products.map(function (object, index){
                             return(
                                 <Grid item key={index} xs={11} sm={3}>
@@ -113,7 +123,33 @@ export default class AdminDeleteCards extends React.Component{
                                 </Grid>
                             )
                         })}
-                        </Grid>
+                    </Grid>*/}
+                    <div className={useStyles.demo}>
+                        <List>
+                        {this.state.products.map(function (object, index){
+                            return(
+                                <div>
+                                <ListItem key={index}>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                    <FastfoodIcon />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={object.name}
+                                    secondary={object.category}
+                                />
+                                <ListItemSecondaryAction>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => handleDialogOpen(object._id)}>
+                                    <DeleteIcon style={{color:'#dc143c'}}/>
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                                </ListItem>
+                                <Divider />
+                                </div>
+                            )})}
+                        </List>
+                    </div>
                     </Grid>
                 </Grid>
             </div>

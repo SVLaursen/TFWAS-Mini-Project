@@ -19,7 +19,7 @@ export default class ProductList extends React.Component{
         return(
             <Grid container flexGrow='1' spacing='3'>
                 <Grid item xs='12'>
-                    <Grid container justify='center' spacing='3' justify="flex-start" alignItems="flex-start">
+                    <Grid container justify="flex-start" spacing='3' alignItems="flex-start">
                     {this.state.products.map(function (object, index){
                         return(
                             <Grid item key={index} xs={11} sm={3}>

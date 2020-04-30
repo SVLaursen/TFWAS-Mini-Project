@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, withRouter, Redirect, useLocation} from 'react-router-dom';
+import { Switch, Route, Link, withRouter, Redirect } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Typography, makeStyles, Drawer, useTheme, ListItem, ListItemIcon, Divider, ListItemText, List, Container } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AppsIcon from '@material-ui/icons/Apps';
@@ -14,7 +14,8 @@ import ProductList from '../components/ProductCards';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from 'styled-components';
 import AdminAddForm from '../components/AdminAddForm';
-import AdminDeleteCards from '../components/AdminDeleteCards';
+import AdminDeleteList from './AdminDeleteList';
+import AdminUpdateList from '../components/AdminUpdateList';
 
 const drawerWidth = 240;
 
@@ -192,23 +193,26 @@ const AnimatedTransition = withRouter(({location}) =>(
       <Switch>
         <Route path='/admin/preview'>
           {/* This is the preview page */}
-          <Container maxWidth='auto' style={{paddingTop:'4rem'}}>
+          <Container maxWidth='xl' style={{paddingTop:'4rem'}}>
             <ProductList />
           </Container>
         </Route>
         <Route path='/admin/add'>
           {/* This is the add product page */}
-          <Container style={{paddingTop:'4rem'}}>
+          <Container maxWidth='xl' style={{paddingTop:'4rem'}}>
             <AdminAddForm />
           </Container>
         </Route>
         <Route path='/admin/update'>
           {/* This is the update product page */}
+          <Container style={{paddingTop:'4rem'}}>
+            <AdminUpdateList />
+          </Container>
         </Route>
         <Route path='/admin/delete'>
           {/* This is the delete product page */}
           <Container style={{paddingTop: '4rem'}}>
-            <AdminDeleteCards />
+            <AdminDeleteList />
           </Container>
         </Route>
       </Switch>
